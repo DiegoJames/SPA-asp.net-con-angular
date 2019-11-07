@@ -1,0 +1,63 @@
+<h1>{{titulo}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="pagina" (ngSubmit)="guardarDatos()">
+
+      <div class="form-group">
+        <label>Id Pagina</label>
+        <input type="text" class="form-control" readonly formControlName="idPagina" />
+      </div>
+
+      <div class="form-group">
+        <input type="radio" name="bVisible" value=1 formControlName="bVisible" />
+        <label>Visible</label>
+
+        <input type="radio" name="bVisible" value=0 formControlName="bVisible" />
+        <label>No visible</label>
+      </div>
+
+      <div class="form-group">
+        <label>Mensaje</label>
+        <input type="text" class="form-control" formControlName="mensaje" />
+        <div style="color:red" *ngIf="pagina.controls['mensaje'].errors?.required">
+          El nombre de la pagina debe ser obligatoria
+        </div>
+        <div style="color:red" *ngIf="pagina.controls['mensaje'].errors?.maxlength">
+          Supero la cantidad maxima
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Accion</label>
+        <input type="text" class="form-control" formControlName="accion" />
+        <div style="color:red" *ngIf="pagina.controls['accion'].errors?.required">
+          El nombre de la pagina debe ser obligatoria
+        </div>
+        <div style="color:red" *ngIf="pagina.controls['accion'].errors?.maxlength">
+          Supero la cantidad maxima
+        </div>
+      </div>
+
+      <div>
+        <input [disabled]="!pagina.valid" type="submit" class="btn btn-primary" value="Guardar" />
+        <button [routerLink]="['/mantenimiento-pagina']" class="btn btn-danger">Regresar</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<div style="margin:1em" *ngIf="!pagina.valid">
+
+  <div class="alert alert-danger">
+    El formulario no es valido, verifique que sean correctos los datos
+  </div>
+
+</div>
+
+
+
+
+
